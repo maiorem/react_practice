@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-</head>
-<body>
+  </head>
+  <body>
     <div id="root"></div>
     <script type="text/babel">
       ReactDOM.render(
         <div>
-            <App/>
+          <App msg="Hello~!!" />
         </div>,
-        document.getElementById('root')
+        document.getElementById("root")
       );
 
-      function App() {
-          const onclick = ()=>{
-              alert("클릭");
-          }
-          return(
-              <div>
-                <h1>Event Processing</h1>
-                <button type="button" onClick={onclick}>클릭</button>
-              </div>
-          )
+      //부모 컴포넌트에서 자식 컴포넌트에 정보를 전달 할 수 있다.
+      function App(props /*, { msg }*/) {
+        // props 매개변수가 존재하고 msg라는 이름으로 값을 전달받는다
+        const onclick = () => {
+          alert(props.msg);
+          // alert("**" + msg + "**");
+        };
+        return (
+          <div>
+            <h1>Event Processing</h1>
+            <button type="button" onClick={onclick}>
+              클릭
+            </button>
+          </div>
+        );
       }
     </script>
-
-</body>
+  </body>
 </html>
