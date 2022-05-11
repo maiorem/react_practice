@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//라우터 - 라우터 : RequestMapping("url ")-> 함수가호출
+//nodejs 라우터 localhost:3000/board/list  라우터  
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
