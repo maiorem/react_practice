@@ -5,10 +5,12 @@ import './App.css';
 import {Routes, Route} from 'react-router-dom';
 import Home from './component/Home';
 import Layout from './component/Layout';
+
 import About from './component/About';
 import Counter from './component/counter';
 import Calculator from './component/Calculator';
 import Hero from './component/Hero';
+import Person from './component/Person';
 
 // add?x=5&y=7  add/5/7 
 function App() {
@@ -19,9 +21,11 @@ function App() {
           <Route index element={<Home/>} />
           <Route path="about" element={<About/>} />
           <Route path="counter" element={<Counter/>} />
+          <Route path="person" element={<Person/>} />
           <Route path="calculator/:x/:y" element={<Calculator/>} />
           <Route path="my/hero/list" element={<Hero/>} />
         </Route>
+\
       </Routes>
 
 
