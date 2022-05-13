@@ -1,0 +1,7 @@
+프로젝트 안에 있는 디비 스키마 이용해서 테이블 만들고 
+myapp-router 압축 풀고 
+cmd 창에서 cd 하고 myap-router 폴더까지 이동하고 
+npm install 해야 라이브러리를 다시 설치함 
+그리고 npm start 를 호출하면 3000번 포트로 작동함 
+
+backend2 는 스프링부트에서 import 한 후 돌리면 됨 

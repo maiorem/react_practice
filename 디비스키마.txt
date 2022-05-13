@@ -1,0 +1,17 @@
+디비정보 : 
+#mysql 
+spring.datasource.url=jdbc:mysql://localhost:5306/mydb2
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=1234
+
+CREATE TABLE `board` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(400) DEFAULT NULL,
+  `writer` varchar(40) DEFAULT NULL,
+  `contents` longtext,
+  `wdate` date DEFAULT NULL,
+  filename varchar(255),
+  image_url  varchar(255),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb3;

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="FreeBoard">
+
+	<!-- 쿼리를 xml로 작성하고 id:식별값  
+		  parameterType:우리가 전달할값 
+	     resultType : 받아오는값  -->
+	     
+	<!-- if test="key=='1'"  - 이렇게 쓰면 안된다 인식안된다 -->
+	
+	<select id="FreeBoard_getList"  parameterType="FreeBoardDto"  
+	                                resultType="FreeBoardDto">
+ 		
+ 	select * from
+	(
+	        select
+			seq
+			,userid
+			,title
+			,contents   
+			,ifnull(hit , 0) hit      
+			,group_id
+			,depth
+			,g_level
+			,regdate
+		from free_board 
+		order by group_id desc, g_level asc 
+	)A limit #{start}, #{pageSize} 
+	
+	</select>
+	
+	<select id="FreeBoard_getTotal"  parameterType="FreeBoardDto"  
+	                                resultType="Integer">
+ 		
+ 	select count(*) from free_board	
+	</select>
+	
+	<select id="FreeBoard_getView"  parameterType="FreeBoardDto"  
+	                                resultType="FreeBoardDto">
+	  select
+			seq
+			,userid
+			,title
+			,contents   
+			,ifnull(hit , 0) hit      
+			,group_id
+			,depth
+			,g_level
+			,regdate
+		from free_board where seq=#{seq}
+	</select>
+	
+	<insert id="FreeBoard_insert"  parameterType="FreeBoardDto"  >
+		<selectKey resultType="String" keyProperty="seq" order="BEFORE">
+		select ifnull(max(seq),0)+1 as seq 
+		from free_board
+		</selectKey>
+		insert into free_board(
+			seq
+			,title
+			,userid
+			,contents
+			,regdate
+			,hit
+			,group_id
+			,depth
+			,g_level
+		)
+		values(
+			#{seq}
+			,#{title}
+			,#{userid}
+			,#{contents}
+			,now()
+			,0
+			,#{seq}
+			,0
+			,1	
+		)
+	</insert>
+	
+	
+	<insert id="FreeBoard_reply"  parameterType="FreeBoardDto"  >
+		<selectKey resultType="String" keyProperty="seq" order="BEFORE">
+		select ifnull(max(seq),0)+1 as seq 
+		from free_board
+		</selectKey>
+		insert into free_board(
+			seq
+			,title
+			,userid
+			,contents
+			,regdate
+			,hit
+			,group_id
+			,depth
+			,g_level
+		)
+		values(
+			#{seq}
+			,#{title}
+			,#{userid}
+			,#{contents}
+			,now()
+			,0
+			,#{group_id}   --  부모것을 가져온다 
+			,#{depth}+1
+			,#{g_level}+1	
+		)
+	</insert>
+	
+	<update id="FreeBoard_updateLevel" parameterType="FreeBoardDto">
+	update free_board set g_level=g_level+1 
+	where group_id=#{group_id} and g_level>#{g_level}     
+	</update>
+	
+		
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
