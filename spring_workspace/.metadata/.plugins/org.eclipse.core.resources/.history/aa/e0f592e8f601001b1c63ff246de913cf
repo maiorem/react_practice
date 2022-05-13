@@ -1,0 +1,28 @@
+package com.example.demo.board;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BoardController {
+	
+	@Resource(name="boardService")
+	BoardService boardService;
+	
+	@RequestMapping("/board/list")
+	List<BoardDto> getList(){
+		return boardService.getList();
+	}
+	
+	//board/list?id=1  => board/list/1
+	@RequestMapping("/board/view/{id}")
+	BoardDto getView(@PathVariable("id")int id) {
+		return boardService.getView(id);
+	}
+	
+}

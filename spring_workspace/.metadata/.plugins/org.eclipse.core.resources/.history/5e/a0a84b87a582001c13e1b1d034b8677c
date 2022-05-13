@@ -1,0 +1,33 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.entity.Board;
+import com.example.demo.repository.BoardRepository;
+
+@Service
+@Transactional
+public class BoardService {
+	@Autowired
+	private BoardRepository repository;
+		  
+	public List<Board> getList(Board dto){		  
+		return repository.findAll();
+	}
+	  
+	public int GetCount() {		  
+		return (int) repository.count();
+	}
+	  
+	@Transactional(readOnly = true)
+	public Page<Board> findAll(Pageable pageable) {
+	    return repository.findAll(pageable);
+	}
+	  
+}

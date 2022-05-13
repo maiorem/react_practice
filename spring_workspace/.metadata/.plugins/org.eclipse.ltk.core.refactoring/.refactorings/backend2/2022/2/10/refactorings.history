@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;backend2/src/main/java/com/example/demo/common/StorageService&apos; to &apos;StorageService.java&apos;" description="Rename resource &apos;StorageService&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/com/example/demo/common/StorageService" name="StorageService.java" stamp="1646034902978" updateReferences="true"/>
+</session>

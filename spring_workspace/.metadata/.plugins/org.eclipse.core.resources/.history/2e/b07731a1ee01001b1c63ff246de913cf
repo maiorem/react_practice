@@ -1,0 +1,20 @@
+package com.example.demo.board;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BoardController {
+	
+	@Resource(name="boardService")
+	BoardService boardService;
+	
+	@RequestMapping("/board/list")
+	List<BoardDto> getList(){
+		return boardService.getList();
+	}
+}

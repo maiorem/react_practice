@@ -1,0 +1,2 @@
+80.82.70.187 - - [15/Nov/2020:17:36:27 +0900] "GET /cache/global/img/gs.gif HTTP/1.1" 404 842
+185.216.140.186 - - [15/Nov/2020:18:43:10 +0900] "GET /cache/global/img/gs.gif HTTP/1.1" 404 842

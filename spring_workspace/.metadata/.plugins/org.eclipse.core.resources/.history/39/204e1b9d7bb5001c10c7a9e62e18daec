@@ -1,0 +1,47 @@
+package com.example.demo;
+
+import javax.annotation.PreDestroy;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.demo.config.SSConnection;
+
+
+@SpringBootApplication
+public class Backend2Application {
+	
+	 private static SSConnection tunnel;
+
+	 public Backend2Application() {
+		 	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	        tunnel = new SSConnection().init( res->{
+	        	
+	        	System.out.println(res );
+	            if(!res) {
+	                System.out.println("포트포워딩 실패, 프로그램을 종료 합니다.");
+	                System.exit(0);
+	            }
+	            else {
+	            	System.out.println("포트포워딩 성공");
+	            }
+	        });        
+	    }
+	 
+	public static void main(String[] args) {
+		
+		System.out.println("start");
+		SpringApplication app = new SpringApplication(Backend2Application.class);
+		app.run(args);
+	}
+	
+	 @PreDestroy
+	    public void end() {
+        try {
+            tunnel.shutdown();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}

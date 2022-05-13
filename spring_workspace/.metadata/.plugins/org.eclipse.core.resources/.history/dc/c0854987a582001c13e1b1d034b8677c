@@ -1,0 +1,38 @@
+package com.example.demo.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+/*
+create table board_dto (
+	    id bigint not null auto_increment comment 'PK',
+	    title varchar(100) not null comment '제목',
+	    content text not null comment '내용',
+	    writer varchar(20) not null comment '작성자',
+	    hits int not null comment '조회 수',
+	    delete_yn enum('Y', 'N') not null comment '삭제 여부',
+	    created_date datetime not null comment '생성일',
+	    modified_date datetime comment '수정일',
+	    primary key (id)
+	) comment '게시판';
+*/
+
+//https://congsong.tistory.com/51
+//https://waspro.tistory.com/636
+	
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.entity.Board;
+
+public interface BoardRepository extends JpaRepository<Board, Long>{
+
+	// 1. 계정 조건 find
+    //Page<Board> findAllByAccount(Pageable pageable, String account);
+    // 2. 상태 조건 find
+   // Page<User> findAllByStatus(Pageable pageable, UserStatus status);
+    // 3. 계정, 상태 조건 find
+   // Page<User> findAllByAccountAndStatus(Pageable pageable, String account, UserStatus status);
+    // 4. Specification를 이용하여 동적으로 조건을 세팅하여 find
+   // Page<User> findAll(Specification<User> spec, Pageable pageable);
+    
+}

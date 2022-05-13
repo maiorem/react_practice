@@ -1,0 +1,47 @@
+package com.example.demo.board;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+
+@Component("boardDao")
+public class BoardDao {
+	
+	private final SqlSession sqlSession;
+
+	public BoardDao(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
+ 
+	List<BoardDto> getList(BoardDto dto){
+		System.out.println("################################################");
+		//return null;
+		return this.sqlSession.selectList("Board.getList", dto);
+	}
+	
+	BoardDto getView(int id);
+	
+	void update(BoardDto dto) {
+		int pos = list.indexOf(dto);
+		if (pos !=-1)
+			list.set(pos, dto);
+	}
+	
+	void delete(BoardDto dto) {
+		int pos = list.indexOf(dto);
+		if (pos !=-1)
+			list.remove(pos);
+	}
+	
+	void insert(BoardDto dto) {
+		int id = list.get(list.size()-1).getId();
+		dto.setId( id+1);
+		list.add(dto);
+	}
+}
