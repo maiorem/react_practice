@@ -1,51 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
-//스프링의 RequestMapping(value="/list")=>호출될 함수 결정 
-//node쪽에서는 라우터라고 한다 
-import {Routes, Route} from 'react-router-dom';
-import Home from './component/Home';
-import Layout from './component/Layout';
+import * as React from "react";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 
-import About from './component/About';
-import Counter from './component/counter';
-import Calculator from './component/Calculator';
-import Hero from './component/Hero';
-import Person from './component/Person';
-
-// add?x=5&y=7  add/5/7 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div>
+      <h1>Basic Example</h1>
+
       <Routes>
-        <Route path="/" element={<Layout/>} >  
-          <Route index element={<Home/>} />
-          <Route path="about" element={<About/>} />
-          <Route path="counter" element={<Counter/>} />
-          <Route path="person" element={<Person/>} />
-          <Route path="calculator/:x/:y" element={<Calculator/>} />
-          <Route path="my/hero/list" element={<Hero/>} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="*" element={<NoMatch />} />
         </Route>
-\
       </Routes>
-
-
     </div>
   );
 }
 
+function Layout() {
+  return (
+    <div>
+      {/* A "layout route" is a good place to put markup you want to
+          share across all the pages on your site, like navigation. */}
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/nothing-here">Nothing Here</Link>
+          </li>
+        </ul>
+      </nav>
 
+      <hr />
+      <Outlet />
+    </div>
+  );
+}
 
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
 
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
 
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
 
-export default App;
-
-
-
-
-
-
-
-
-
-
+function NoMatch() {
+  return (
+    <div>
+      <h2>Nothing to see here!</h2>
+      <p>
+        <Link to="/">Go to the home page</Link>
+      </p>
+    </div>
+  );
+}
